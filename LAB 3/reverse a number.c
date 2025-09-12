@@ -1,0 +1,21 @@
+#include <stdio.h>
+int main()   {
+	int a,i;
+	printf("write a number:");
+	scanf("%d",&a);
+	while (a!=0) {
+	
+	
+	i=a%10;
+	a=a/10;
+
+
+
+	printf(" %d \n",i);}
+	return 0;
+	
+	
+	
+	
+	
+}
