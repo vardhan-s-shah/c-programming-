@@ -1,1 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
+int main() {
+    FILE *file;
+    int rollNo;
+    char name[100];
+    char choice;
+
+    file = fopen("roll.csv", "w");
+    if (file == NULL) {
+        printf("Error opening file.\n");
+        return 1;
+    }
+
+    fprintf(file, "Roll No,Name\n");
+
+    do {
+        printf("Enter Roll No: ");
+        scanf("%d", &rollNo);
+        getchar(); 
+
+        printf("Enter Name: ");
+        fgets(name, sizeof(name), stdin);
+
+        if (name[strlen(name) - 1] == '\n') {
+            name[strlen(name) - 1] = '\0';
+        }
+
+        fprintf(file, "%d,%s\n", rollNo, name);
+
+        printf("Do you want to enter another record? (y/n): ");
+        scanf(" %c", &choice);
+        getchar(); 
+
+    } while (choice == 'y' || choice == 'Y');
+
+    fclose(file);
+
+    // Open the file in MS Excel (Windows only)
+    system("start excel.exe roll.csv");
+
+    return 0;   //for open the file direct to the excel we have to give command directly to system so we use this type of command that available in stdlib header file.
+}
