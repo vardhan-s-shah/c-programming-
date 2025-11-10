@@ -1,1 +1,51 @@
+#include <stdio.h>
+#include <string.h>
+struct Customer {
+    int acc_no;
+    char name[50];   // float precesion to 6 points use double for more precesion if need
+    float balance;};
+
+    void lowBalance(struct Customer c[], int n) {
+    printf("Customers with balance below Rs. 100:\n");
+    for(int i = 0; i < n; i++) {
+    if(c[i].balance < 100)
+    printf("Acc No: %d, Name: %s, Balance: %.2f\n", c[i].acc_no, c[i].name, c[i].balance);
+    }
+}
+
+void transaction(struct Customer c[], int n, int acc, float amount, int code) {
+for(int i = 0; i < n; i++) {
+if(c[i].acc_no == acc) {
+if(code == 1) {
+c[i].balance += amount;
+printf("Deposit successful! New Balance: %.2f\n", c[i].balance);
+} else {
+if(c[i].balance < amount)
+printf("The balance is insufficient for the specified withdrawal.\n");
+else {
+              c[i].balance -= amount;
+        printf("Withdrawal successful! New Balance: %.2f\n", c[i].balance);
+                }   }
+            return;  }    }
+    printf("Account not found!\n");}
+
+int main() {
+    struct Customer c[10];
+    int i, acc, code;
+    float amt;
+
+    for(i = 0; i < 10; i++) {
+        printf("\nEnter details of customer %d:\n", i + 1);
+        printf("Account Number: "); scanf("%d", &c[i].acc_no);
+        printf("Name: "); scanf("%s", c[i].name);
+        printf("Balance: "); scanf("%f", &c[i].balance);
+    }   lowBalance(c, 10);  // calling the function low balance 
+
+    printf("\nEnter transaction details:\n");
+    printf("Account Number: "); scanf("%d", &acc);
+    printf("Amount: "); scanf("%f", &amt);
+    printf("Enter Code (1=Deposit, 0=Withdraw): "); scanf("%d", &code);
+  transaction(c, 10, acc, amt, code);
+
+    return 0;
 
