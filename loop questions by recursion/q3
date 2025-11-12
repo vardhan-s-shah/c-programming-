@@ -1,0 +1,6 @@
+#include<stdio.h>
+void f(int n)
+{if(n<=20){printf("%d ",n);f(n+2);} }
+int main(){
+f(2);
+return 0;}
