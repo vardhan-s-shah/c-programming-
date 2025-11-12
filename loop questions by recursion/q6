@@ -1,0 +1,7 @@
+#include<stdio.h>
+void f(int n,int i)
+{if(n){printf("%d ",i);f(n-1,i+2);}
+}
+int main()
+{f(10,2);
+return 0;}
