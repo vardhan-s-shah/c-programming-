@@ -1,0 +1,18 @@
+#include <stdio.h>
+
+void findMinMax(int arr[], int index, int *min, int *max) {
+    if (index == 100) return;
+    if (arr[index] < *min) *min = arr[index];
+    if (arr[index] > *max) *max = arr[index];
+    findMinMax(arr, index + 1, min, max);
+}
+
+int main() {
+    int arr[100], i, min, max;
+    for (i = 0; i < 100; i++)
+        scanf("%d", &arr[i]);
+    min = max = arr[0];
+    findMinMax(arr, 1, &min, &max);
+    printf("Min = %d\nMax = %d\n", min, max);
+    return 0;
+}
